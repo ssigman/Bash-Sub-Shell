@@ -18,11 +18,13 @@ public class Token {
     public final static byte OD = 11;
     public final static byte EOL = 12;  // end of line
     public final static byte EOT = 13;  // end of the text
+    public final static byte CMD = 14;
+    public final static byte ARG = 15;
 
     private final static String[] spellings = {
             "<shell command>", "<literal>", "<variable>", "assign",
             "if", "then", "else", "fi", "for", "in", "do", "od", "<eol>",
-            "<eot>"
+            "<eot>", "<command>", "<argument>"
     };
 
     public static String kindString(byte kind) {

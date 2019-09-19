@@ -35,11 +35,31 @@ public class Parser {
 
     //---------------- Parsing Methods ---------------
     private void parseScript() {
-
+         while (currentToken.kind == Token.FName
+                || currentToken.kind == Token.VAR
+                || currentToken.kind == Token.IF
+                 || currentToken.kind == Token.FOR)
+             parseCommand();
     }
 
     private void parseCommand() {
-
+        switch (currentToken.kind) {
+            case Token.FName: {
+                acceptIt();
+                //parseFileName();
+                while (currentToken.kind == Token.FName
+                      || currentToken.kind == Token.LIT
+                      || currentToken.kind == Token.VAR)
+                    parseArgument();
+                accept(Token.EOL);
+            }
+            case Token.VAR: {
+                acceptIt();
+                accept(Token.ASSIGN);
+                parseArgument();
+                accept(Token.EOL);
+            }
+        }
     }
 
     private void parseArgument() {
