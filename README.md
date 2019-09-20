@@ -20,4 +20,4 @@ Example of a parser for a simple bash script recursive decent parser.  Grammar c
   Variable -> Letter(Letter | Digit | _)*
   Literal -> -(ε|-)(Letter | Digit)* | Digit*
 ``` 
-Since Filename &#8834 Variable, we will require that no variable be named the same as a Filename.
+Since Filename &#8834; Variable, we will require that no variable be named the same as a Filename.
