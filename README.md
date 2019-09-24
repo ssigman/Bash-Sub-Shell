@@ -16,8 +16,8 @@ Example of a parser for a simple bash script recursive decent parser.  Grammar c
                    Command*
                  od eol
   Argument -> Filename | Literal | Variable
-  Filename -> cat | ls | pwd | touch | cp | mv |n rm | chmod | man | ps | bg
-  Variable -> Letter(Letter | Digit | _)*
+  Filename -> cat | ls | pwd | touch | cp | mv | rm | chmod | man | ps | bg | mkdir | test | cd
+  Variable -> Letter(Letter | Digit | _ | .)*
   Literal -> -(ε|-)(Letter | Digit)* | Digit*
 ``` 
 Since Filename &#8834; Variable, we will require that no variable be named the same as a Filename.  We can follow the Watt's and Brown's advice for handling the keywords from Filename.  The lexical scanner should identify any terminal that matches a Variable and create a Token for a Variable. The constructor for Token should check the spelling of the Variable and if it is a member of Filename, change the kind of the token to the approptiate value.  *See* pages 123 and 124 for a discussion of this strategy.  
