@@ -12,7 +12,7 @@ Example of a parser for a simple bash script recursive decent parser.  Grammar c
                 Command*
              fi eol
            | for Variable in Argument* eol
-                 do
+                 do eol
                    Command*
                  od eol
   Argument -> Filename | Literal | Variable
