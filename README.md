@@ -60,3 +60,39 @@ Since Filename &#8834; Variable, we will require that no variable be named the s
   Variable -> Letter(Letter | Digit | _ | .)*
   Literal -> -(ε|-)(Letter | Digit)* | Digit*
 ``` 
+### Abstract Syntax Trees
+
+#### Script AST (S)
+```
+    Script
+      |
+      C
+```
+#### Command AST (C)
+```
+    Seq-Cmd         Exec-Cmd          Assign-Cmd    
+       |               |                  |   
+    ------       -------------       ------------ 
+   |      |     |             |     |            |
+   C1     C2  FName-Arg       A   Var-Arg        A
+ 
+             if-Cmd                for-Cmd        Null-Cmd
+               |                      |              |
+      -------------------        -----------        eol
+     |         |   |    |       |     |     |
+   FName-Arg   A   Ct   Ce   Var-Arg  A    C
+```
+
+#### Single-Arg AST
+```
+FName-Arg   Var-Arg  Literal-Arg
+```
+
+#### Arugment AST (A)
+```
+ FName-Arg    Literal-Arg    Var-Arg    Seq-Arg      Null-Arg
+     |             |           |           |             |
+  spelling      spelling    spelling    -------          ε 
+                                       |       |
+                                       A1      A2
+```
