@@ -43,15 +43,18 @@ Since Filename &#8834; Variable, we will require that no variable be named the s
                    Command
                  od eol
              | Command Command                 ( Seq-Cmd)
+             | eol                             ( Null-Cmd)
            
   Argument   -> Filename                       ( FName-Arg )
               | Literal                        ( Literal-Arg )
               | Variable                       ( Var-Arg )
               | Argument Argument              ( Seq-Argument )
+              | ε                              ( Null-Arg )
             
    Single-Arg -> Filename                      ( FName-Arg )
                | Literal                       ( Literal-Arg )
                | Variable                      ( Var-Arg )
+               | ε                             ( Null-Arg )
             
   Filename -> cat | ls | pwd | touch | cp | mv | rm | chmod | man | ps | bg | mkdir | test | cd
   Variable -> Letter(Letter | Digit | _ | .)*
