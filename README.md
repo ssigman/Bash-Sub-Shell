@@ -27,3 +27,33 @@ Since Filename &#8834; Variable, we will require that no variable be named the s
 **Note 1:**  9/24/2019 - The Kleene star has been removed from the Argument non-terminal in the assignment statement.  Reomving the ability to assign a vairable a list of Arguments simplifies the language. 
 
 **Note 2:**  9/26/2019 -  Names for productions are listed in parentheses following the rule.
+
+### Abstract Syntax Grammar for a subset of the Bash shell scripting language
+```
+  Script   -> Command                        ( Script )
+  Command   -> Filename Argument  eol          ( Exec-Cmd )
+             | Variable = Single-Arg eol         ( Assign-Cmd )
+             | if Filename Arugment then eol  ( if-Cmd )
+                  Command
+               else eol
+                  Command
+               fi eol
+             | for Variable in Argument* eol   ( for-Cmd )
+                 do eol
+                   Command
+                 od eol
+             | Command Command                 ( Seq-Cmd)
+           
+  Argument   -> Filename                       ( FName-Arg )
+              | Literal                        ( Literal-Arg )
+              | Variable                       ( Var-Arg )
+              | Argument Argument              ( Seq-Argument )
+            
+   Single-Arg -> Filename                      ( FName-Cmd )
+               | Literal                       ( Literal-Arg )
+               | Variable                      ( Var-Arg )
+            
+  Filename -> cat | ls | pwd | touch | cp | mv | rm | chmod | man | ps | bg | mkdir | test | cd
+  Variable -> Letter(Letter | Digit | _ | .)*
+  Literal -> -(ε|-)(Letter | Digit)* | Digit*
+``` 
