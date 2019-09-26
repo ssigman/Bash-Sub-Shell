@@ -49,7 +49,7 @@ Since Filename &#8834; Variable, we will require that no variable be named the s
               | Variable                       ( Var-Arg )
               | Argument Argument              ( Seq-Argument )
             
-   Single-Arg -> Filename                      ( FName-Cmd )
+   Single-Arg -> Filename                      ( FName-Arg )
                | Literal                       ( Literal-Arg )
                | Variable                      ( Var-Arg )
             
