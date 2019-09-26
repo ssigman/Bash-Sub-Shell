@@ -38,7 +38,7 @@ Since Filename &#8834; Variable, we will require that no variable be named the s
                else eol
                   Command
                fi eol
-             | for Variable in Argument* eol   ( for-Cmd )
+             | for Variable in Argument eol   ( for-Cmd )
                  do eol
                    Command
                  od eol
