@@ -43,18 +43,15 @@ Since Filename &#8834; Variable, we will require that no variable be named the s
                    Command
                  od eol
              | Command Command                 ( Seq-Cmd)
-             | eol                             ( Null-Cmd)
            
   Argument   -> Filename                       ( FName-Arg )
               | Literal                        ( Literal-Arg )
               | Variable                       ( Var-Arg )
               | Argument Argument              ( Seq-Argument )
-              | ε                              ( Null-Arg )
             
    Single-Arg -> Filename                      ( FName-Arg )
                | Literal                       ( Literal-Arg )
                | Variable                      ( Var-Arg )
-               | ε                             ( Null-Arg )
             
   Filename -> cat | ls | pwd | touch | cp | mv | rm | chmod | man | ps | bg | mkdir | test | cd
   Variable -> Letter(Letter | Digit | _ | .)*
@@ -76,9 +73,9 @@ Since Filename &#8834; Variable, we will require that no variable be named the s
    |      |     |             |     |            |
    C1     C2  FName-Arg       A   Var-Arg   Single-Arg
  
-             if-Cmd                for-Cmd        Null-Cmd
-               |                      |              |
-      -------------------        -----------        eol
+             if-Cmd                for-Cmd        
+               |                      |            
+      -------------------        -----------       
      |         |   |    |       |     |     |
    FName-Arg   A   Ct   Ce   Var-Arg  A    C
 ```
@@ -90,9 +87,9 @@ FName-Arg   Var-Arg  Literal-Arg
 
 #### Arugment AST (A)
 ```
- FName-Arg    Literal-Arg    Var-Arg    Seq-Arg      Null-Arg
-     |             |           |           |             |
-  spelling      spelling    spelling    -------          ε 
+ FName-Arg    Literal-Arg    Var-Arg    Seq-Arg      
+     |             |           |           |         
+  spelling      spelling    spelling    -------     
                                        |       |
                                        A1      A2
 ```
