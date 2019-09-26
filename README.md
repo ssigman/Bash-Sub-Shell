@@ -30,9 +30,9 @@ Since Filename &#8834; Variable, we will require that no variable be named the s
 
 ### Abstract Syntax Grammar for a subset of the Bash shell scripting language
 ```
-  Script   -> Command                        ( Script )
-  Command   -> Filename Argument  eol          ( Exec-Cmd )
-             | Variable = Single-Arg eol         ( Assign-Cmd )
+  Script   -> Command                         ( Script )
+  Command   -> Filename Argument  eol         ( Exec-Cmd )
+             | Variable = Single-Arg eol      ( Assign-Cmd )
              | if Filename Arugment then eol  ( if-Cmd )
                   Command
                else eol
