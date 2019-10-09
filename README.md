@@ -94,3 +94,55 @@ FName-Arg   Var-Arg  Literal-Arg
                                        |       |
                                        A1      A2
 ```
+
+### Examples
+#### Script: bckup.sh
+```
+file1 = stuff1.txt
+file2 = stuff2.c
+file3 = stuff3.java
+for file in file1 file2 file3 
+  do
+    if test -e file then
+       cp file bck
+    else
+    fi
+  od  
+```
+#### AST for bckup.sh *(Indention style)*
+```
+Script
+  Seq-Cmd
+    Assign-Cmd
+      Var-Arg (file1)
+      Single-Arg
+        Var-Arg (stuff1.txt)
+    Seq-Cmd
+        Assign-Cmd
+          Var-Arg (file2)
+          Single-Arg
+            Var-Arg (stuff2.c)
+         Seq-Cmd
+           Assign-Cmd
+             Var-Arg (file3)
+              Single-Arg
+              Var-Arg (stuff3.java)
+         for-Cmd
+           Var-Arg (file)
+           Seq-Arg
+             Var-Arg (file1)
+             Seq-Arg
+               Var-Arg (file2)
+               Var-Arg (file3)
+           if-Cmd
+             FName-Arg (test)
+             Seq-Arg
+             	 Literal-Arg (-e)
+               Var-Arg (file)
+             Exec-Cmd
+             	 FName-Arg (cp)
+               Seq-Arg
+               	 Var-Arg (file)
+                 Var-Arg (bck) 
+               Empty-Cmd
+```
