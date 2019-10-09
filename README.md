@@ -43,6 +43,7 @@ Since Filename &#8834; Variable, we will require that no variable be named the s
                    Command
                  od eol
              | Command Command                 ( Seq-Cmd)
+             | ε                               ( Empty-Cmd )
            
   Argument   -> Filename                       ( FName-Arg )
               | Literal                        ( Literal-Arg )
@@ -73,9 +74,9 @@ Since Filename &#8834; Variable, we will require that no variable be named the s
    |      |     |             |     |            |
    C1     C2  FName-Arg       A   Var-Arg   Single-Arg
  
-             if-Cmd                for-Cmd        
-               |                      |            
-      -------------------        -----------       
+             if-Cmd                for-Cmd        Empty-Cmd
+               |                      |               |
+      -------------------        -----------          ε
      |         |   |    |       |     |     |
    FName-Arg   A   Ct   Ce   Var-Arg  A    C
 ```
@@ -85,7 +86,7 @@ Since Filename &#8834; Variable, we will require that no variable be named the s
 FName-Arg   Var-Arg  Literal-Arg
 ```
 
-#### Arugment AST (A)
+#### Argument AST (A)
 ```
  FName-Arg    Literal-Arg    Var-Arg    Seq-Arg      
      |             |           |           |         
